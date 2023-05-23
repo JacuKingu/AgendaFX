@@ -47,75 +47,75 @@ public class Person {
 		this.cump = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
 	}
 	
-	public String getnombre() {
+	public String getNombre() {
 		return nombre.get();
 	}
 
-	public void setnombre(String nombre) {
+	public void setNombre(String nombre) {
 		this.nombre.set(nombre);
 	}
 	
-	public StringProperty nombreProperty() {
+	public StringProperty NombreProperty() {
 		return nombre;
 	}
 
-	public String getapellido() {
+	public String getApellido() {
 		return apellido.get();
 	}
 
-	public void setapellido(String apellido) {
+	public void setApellido(String apellido) {
 		this.apellido.set(apellido);
 	}
 	
-	public StringProperty apellidoProperty() {
+	public StringProperty ApellidoProperty() {
 		return apellido;
 	}
 
-	public String getcalle() {
+	public String getCalle() {
 		return calle.get();
 	}
 
-	public void setcalle(String calle) {
+	public void setCalle(String calle) {
 		this.calle.set(calle);
 	}
 	
-	public StringProperty calleProperty() {
+	public StringProperty CalleProperty() {
 		return calle;
 	}
 
-	public int getcodpost() {
+	public int getCodPost() {
 		return codpost.get();
 	}
 
-	public void setcodpost(int codpost) {
+	public void setCodPost(int codpost) {
 		this.codpost.set(codpost);
 	}
 	
-	public IntegerProperty codpostProperty() {
+	public IntegerProperty CodPostProperty() {
 		return codpost;
 	}
 
-	public String getciudad() {
+	public String getCiudad() {
 		return ciudad.get();
 	}
 
-	public void setciudad(String ciudad) {
+	public void setCiudad(String ciudad) {
 		this.ciudad.set(ciudad);
 	}
 	
-	public StringProperty ciudadProperty() {
+	public StringProperty CiudadProperty() {
 		return ciudad;
 	}
 
-	public LocalDate getcump() {
+	public LocalDate getCump() {
 		return cump.get();
 	}
 
-	public void setcump(LocalDate cump) {
+	public void setCump(LocalDate cump) {
 		this.cump.set(cump);
 	}
 	
-	public ObjectProperty<LocalDate> cumpProperty() {
+	public ObjectProperty<LocalDate> CumpProperty() {
 		return cump;
 	}
 }
