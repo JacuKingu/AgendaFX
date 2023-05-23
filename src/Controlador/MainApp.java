@@ -61,7 +61,7 @@ public class MainApp extends Application {
     }
     
 	/**
-	 * Returns the main stage.
+	 * Devuelve al escenario Principal.
 	 * @return
 	 */
 	public Stage getPrimaryStage() {
