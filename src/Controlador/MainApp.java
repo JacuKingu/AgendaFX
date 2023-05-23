@@ -5,6 +5,8 @@ import java.io.IOException;
 import Modelo.Person;
 import Vista.PersonOverviewController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -15,8 +17,6 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-
-     // ... AFTER THE OTHER VARIABLES ...
 
 	/**
 	 * The data as an observable list of Persons.
