@@ -16,106 +16,106 @@ import javafx.beans.property.StringProperty;
  */
 public class Person {
 
-	private final StringProperty firstName;
-	private final StringProperty lastName;
-	private final StringProperty street;
-	private final IntegerProperty postalCode;
-	private final StringProperty city;
-	private final ObjectProperty<LocalDate> birthday;
+	private final StringProperty nombre;
+	private final StringProperty apellido;
+	private final StringProperty calle;
+	private final IntegerProperty codpost;
+	private final StringProperty ciudad;
+	private final ObjectProperty<LocalDate> cump;
 
 	/**
 	 * Default constructor.
 	 */
 	public Person() {
-		this(null, null);
+		this(null,null);
 	}
 	
 	/**
 	 * Constructor with some initial data.
 	 * 
-	 * @param firstName
-	 * @param lastName
+	 * @param nombre
+	 * @param apellido
 	 */
-	public Person(String firstName, String lastName) {
-		this.firstName = new SimpleStringProperty(firstName);
-		this.lastName = new SimpleStringProperty(lastName);
+	public Person(String nombre, String apellido) {
+		this.nombre = new SimpleStringProperty(nombre);
+		this.apellido = new SimpleStringProperty(apellido);
 		
 		// Some initial dummy data, just for convenient testing.
-		this.street = new SimpleStringProperty("some street");
-		this.postalCode = new SimpleIntegerProperty(1234);
-		this.city = new SimpleStringProperty("some city");
-		this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+		this.calle = new SimpleStringProperty("Alguna calle");
+		this.codpost = new SimpleIntegerProperty(1234);
+		this.ciudad = new SimpleStringProperty("Alguna ciudad");
+		this.cump = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
 	}
 	
-	public String getFirstName() {
-		return firstName.get();
+	public String getnombre() {
+		return nombre.get();
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName.set(firstName);
+	public void setnombre(String nombre) {
+		this.nombre.set(nombre);
 	}
 	
-	public StringProperty firstNameProperty() {
-		return firstName;
+	public StringProperty nombreProperty() {
+		return nombre;
 	}
 
-	public String getLastName() {
-		return lastName.get();
+	public String getapellido() {
+		return apellido.get();
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName.set(lastName);
+	public void setapellido(String apellido) {
+		this.apellido.set(apellido);
 	}
 	
-	public StringProperty lastNameProperty() {
-		return lastName;
+	public StringProperty apellidoProperty() {
+		return apellido;
 	}
 
-	public String getStreet() {
-		return street.get();
+	public String getcalle() {
+		return calle.get();
 	}
 
-	public void setStreet(String street) {
-		this.street.set(street);
+	public void setcalle(String calle) {
+		this.calle.set(calle);
 	}
 	
-	public StringProperty streetProperty() {
-		return street;
+	public StringProperty calleProperty() {
+		return calle;
 	}
 
-	public int getPostalCode() {
-		return postalCode.get();
+	public int getcodpost() {
+		return codpost.get();
 	}
 
-	public void setPostalCode(int postalCode) {
-		this.postalCode.set(postalCode);
+	public void setcodpost(int codpost) {
+		this.codpost.set(codpost);
 	}
 	
-	public IntegerProperty postalCodeProperty() {
-		return postalCode;
+	public IntegerProperty codpostProperty() {
+		return codpost;
 	}
 
-	public String getCity() {
-		return city.get();
+	public String getciudad() {
+		return ciudad.get();
 	}
 
-	public void setCity(String city) {
-		this.city.set(city);
+	public void setciudad(String ciudad) {
+		this.ciudad.set(ciudad);
 	}
 	
-	public StringProperty cityProperty() {
-		return city;
+	public StringProperty ciudadProperty() {
+		return ciudad;
 	}
 
-	public LocalDate getBirthday() {
-		return birthday.get();
+	public LocalDate getcump() {
+		return cump.get();
 	}
 
-	public void setBirthday(LocalDate birthday) {
-		this.birthday.set(birthday);
+	public void setcump(LocalDate cump) {
+		this.cump.set(cump);
 	}
 	
-	public ObjectProperty<LocalDate> birthdayProperty() {
-		return birthday;
+	public ObjectProperty<LocalDate> cumpProperty() {
+		return cump;
 	}
 }
