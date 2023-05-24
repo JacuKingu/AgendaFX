@@ -5,19 +5,27 @@ import java.io.File;
 import java.util.prefs.Preferences;
 
 import Modelo.Person;
+import Modelo.PersonListWrapper;
 import Vista.PersonOverviewController;
 import Vista.PersonEditDialogController;
+import Vista.RootLayoutController;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
-import javafx.scene.image.Image;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 public class MainApp extends Application {
 
@@ -77,14 +85,26 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/Vista/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-            
+
             // Muestra la escena que contiene root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+
+            // Give the controller access to the main app.
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
             primaryStage.show();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Try to load last opened person file.
+        File file = getPersonFilePath();
+        if (file != null) {
+            loadPersonDataFromFile(file);
+        } 
     }
 
     /**
@@ -181,6 +201,63 @@ public class MainApp extends Application {
 
             // Update the stage title.
             primaryStage.setTitle("AgendaApp");
+        }
+    }
+
+    /**
+     * Loads person data from the specified file. The current person data will
+     * be replaced.
+     * 
+     * @param file
+     */
+    public void loadPersonDataFromFile(File file) {
+        try {
+            JAXBContext context = JAXBContext
+                    .newInstance(PersonListWrapper.class);
+            Unmarshaller um = context.createUnmarshaller();
+
+            // Reading XML from the file and unmarshalling.
+            PersonListWrapper wrapper = (PersonListWrapper) um.unmarshal(file);
+
+            personData.clear();
+            personData.addAll(wrapper.getPersons());
+
+            // Save the file path to the registry.
+            setPersonFilePath(file);
+
+        } catch (Exception e) { // catches ANY exception
+            Dialogs.create()
+                    .title("Error")
+                    .masthead("Could not load data from file:\n" + file.getPath())
+                    .showException(e);
+        }
+    }
+
+    /**
+     * Saves the current person data to the specified file.
+     * 
+     * @param file
+     */
+    public void savePersonDataToFile(File file) {
+        try {
+            JAXBContext context = JAXBContext
+                    .newInstance(PersonListWrapper.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            // Wrapping our person data.
+            PersonListWrapper wrapper = new PersonListWrapper();
+            wrapper.setPersons(personData);
+
+            // Marshalling and saving XML to the file.
+            m.marshal(wrapper, file);
+
+            // Save the file path to the registry.
+            setPersonFilePath(file);
+        } catch (Exception e) { // catches ANY exception
+            Dialogs.create().title("Error")
+                    .masthead("Could not save data to file:\n" + file.getPath())
+                    .showException(e);
         }
     }
 

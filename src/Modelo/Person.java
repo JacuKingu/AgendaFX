@@ -107,6 +107,7 @@ public class Person {
 		return ciudad;
 	}
 
+	@XmlJavaTypeAdapter(LocalDateAdapter.class)
 	public LocalDate getCump() {
 		return cump.get();
 	}
