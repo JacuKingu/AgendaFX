@@ -1,9 +1,6 @@
 package Controlador;
 
 import java.io.IOException;
-import java.io.File;
-import java.util.prefs.Preferences;
-
 import Modelo.Person;
 import Vista.PersonOverviewController;
 import Vista.PersonEditDialogController;
@@ -14,8 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
