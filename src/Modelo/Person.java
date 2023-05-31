@@ -44,7 +44,7 @@ public class Person {
 		this.calle = new SimpleStringProperty("Alguna calle");
 		this.codpost = new SimpleIntegerProperty(1234);
 		this.ciudad = new SimpleStringProperty("Alguna ciudad");
-		this.cump = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+		this.cump = new SimpleObjectProperty<LocalDate>(LocalDate.of(2023, 5, 21));
 	}
 	
 	public String getNombre() {

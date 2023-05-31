@@ -4,6 +4,8 @@ import java.io.IOException;
 import Modelo.Person;
 import Vista.PersonOverviewController;
 import Vista.PersonEditDialogController;
+import Vista.RootLayoutController;
+import Vista.BirthdayStatisticsController;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -78,6 +80,11 @@ public class MainApp extends Application {
             // Muestra la escena que contiene root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            
+            // Give the controller access to the main app.
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            
             primaryStage.show();
             
         } catch (IOException e) {
@@ -141,6 +148,33 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * Opens a dialog to show birthday statistics.
+     */
+    public void showBirthdayStatistics() {
+        try {
+            // Load the fxml file and create a new stage for the popup.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/Vista/BirthdayStatistics.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Birthday Statistics");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the persons into the controller.
+            BirthdayStatisticsController controller = loader.getController();
+            controller.setPersonData(personData);
+
+            dialogStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
